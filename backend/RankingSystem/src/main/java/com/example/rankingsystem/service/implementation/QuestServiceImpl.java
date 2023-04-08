@@ -17,7 +17,7 @@ public class QuestServiceImpl implements QuestService {
     private UserRepository userRepository;
 
     @Override
-    public void add(QuestDto questDto) throws CrudException {
+    public void add(QuestDto questDto) {
         Quest quest = new Quest();
         quest.setTokensReward(questDto.getTokensReward());
         quest.setDescription(questDto.getDescription());
@@ -54,6 +54,7 @@ public class QuestServiceImpl implements QuestService {
                 .tokensReward(quest.getTokensReward())
                 .description(quest.getDescription())
                 .ownerUserId(quest.getUser().getId())
-                .build()).toList();
+                .build())
+                .toList();
     }
 }
