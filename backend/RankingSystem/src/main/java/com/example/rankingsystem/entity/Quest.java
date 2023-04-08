@@ -1,9 +1,6 @@
 package com.example.RankingSystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,8 +13,11 @@ import lombok.*;
 public class Quest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long ownerUserId;
+    Long questId;
     String description;
     Integer badgesReward;
     Integer tokensReward;
+    @ManyToOne(cascade = CascadeType.ALL)
+            @JoinColumn(name = "user_id", nullable = false)
+    User user;
 }
