@@ -1,4 +1,4 @@
-package com.example.rankingsystem;
+package com.example.RankingSystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
