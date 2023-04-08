@@ -13,8 +13,13 @@ import java.util.List;
 
 @Service
 public class QuestServiceImpl implements QuestService {
-    private QuestRepository questRepository;
-    private UserRepository userRepository;
+    private final QuestRepository questRepository;
+    private final UserRepository userRepository;
+
+    public QuestServiceImpl(QuestRepository questRepository, UserRepository userRepository) {
+        this.questRepository = questRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void add(QuestDto questDto) {

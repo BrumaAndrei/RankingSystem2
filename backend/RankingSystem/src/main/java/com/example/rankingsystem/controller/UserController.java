@@ -1,41 +1,42 @@
 package com.example.RankingSystem.controller;
 
 import com.example.RankingSystem.dto.QuestDto;
-import com.example.RankingSystem.service.interfaces.QuestService;
+import com.example.RankingSystem.dto.UserDto;
+import com.example.RankingSystem.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/quest")
-public class QuestController {
-   private final QuestService questService;
+@RequestMapping("/user")
+public class UserController {
+    private final UserService userService;
 
-    public QuestController(QuestService questService) {
-        this.questService = questService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(questService.getAll());
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody QuestDto dto){
-        questService.add(dto);
+    public ResponseEntity<?> add(@RequestBody UserDto dto){
+        userService.add(dto);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id,
-                                    @RequestBody QuestDto questDto){
-        questService.update(id, questDto);
+                                    @RequestBody UserDto userDto){
+        userService.update(id, userDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id){
-        questService.delete(id);
+        userService.delete(id);
         return ResponseEntity.ok().build();
     }
 
