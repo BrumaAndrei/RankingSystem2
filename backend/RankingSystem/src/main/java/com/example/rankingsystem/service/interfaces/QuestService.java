@@ -11,4 +11,5 @@ public interface QuestService {
     void update(Long id, QuestDto quest) throws CrudException;
     void delete(Long id) throws CrudException;
     List<QuestDto> getAll();
+    void addQuestToUser(Long questId, Long userId);
 }

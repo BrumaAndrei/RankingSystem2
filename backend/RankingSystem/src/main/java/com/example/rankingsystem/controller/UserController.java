@@ -1,9 +1,7 @@
 package com.example.RankingSystem.controller;
 
-import com.example.RankingSystem.dto.QuestDto;
 import com.example.RankingSystem.dto.UserDto;
 import com.example.RankingSystem.service.interfaces.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

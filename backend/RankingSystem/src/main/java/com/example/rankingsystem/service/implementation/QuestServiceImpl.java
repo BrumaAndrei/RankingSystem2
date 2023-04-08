@@ -3,6 +3,8 @@ package com.example.RankingSystem.service.implementation;
 import com.example.RankingSystem.dto.QuestDto;
 import com.example.RankingSystem.entity.Quest;
 import com.example.RankingSystem.entity.User;
+import com.example.RankingSystem.entity.UserTriesQuest;
+import com.example.RankingSystem.entity.UserTriesQuestId;
 import com.example.RankingSystem.exception.CrudException;
 import com.example.RankingSystem.repository.QuestRepository;
 import com.example.RankingSystem.repository.UserRepository;
@@ -61,5 +63,24 @@ public class QuestServiceImpl implements QuestService {
                 .ownerUserId(quest.getUser().getId())
                 .build())
                 .toList();
+    }
+
+    @Override
+    public void addQuestToUser(Long questId, Long userId) {
+        var quest = questRepository.findById(questId).orElseThrow(() -> new CrudException("User with " +
+                "this id doesn't exist"));
+        var user = userRepository.findById(userId).orElseThrow(() -> new CrudException("User with " +
+                "this id doesn't exist"));
+
+        var quests = user.getQuests();
+        quests.add(quest);
+        user.setQuests(quests);
+//        UserTriesQuestId userTriesQuestId = new UserTriesQuestId();
+//        userTriesQuestId.setQuest(quest);
+//        userTriesQuestId.setUser(user);
+//        UserTriesQuest userTriesQuest = new UserTriesQuest();
+//        userTriesQuest.setId(userTriesQuestId);
+//        userTriesQuest.setCompleted(false);
+
     }
 }
