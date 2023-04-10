@@ -11,10 +11,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class UserTriesQuestId implements Serializable {
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    User user;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quest_id", referencedColumnName = "questId")
-    Quest quest;
+    @Column(name = "user_id")
+    private Long userId;
+    @Column(name = "quest_id")
+    private Long questId;
 }

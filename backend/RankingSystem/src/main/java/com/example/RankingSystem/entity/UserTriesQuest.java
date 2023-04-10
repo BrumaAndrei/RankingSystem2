@@ -13,5 +13,16 @@ import lombok.*;
 public class UserTriesQuest {
     @EmbeddedId
     UserTriesQuestId id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("questId")
+    @JoinColumn(name = "quest_id")
+    private Quest quest;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
+    private User user;
+
     Boolean completed;
 }
