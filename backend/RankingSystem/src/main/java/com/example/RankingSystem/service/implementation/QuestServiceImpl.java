@@ -10,6 +10,7 @@ import com.example.RankingSystem.service.interfaces.QuestService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestServiceImpl implements QuestService {
@@ -73,5 +74,19 @@ public class QuestServiceImpl implements QuestService {
         var quests = user.getQuests();
         quests.add(quest);
         user.setQuests(quests);
+    }
+
+    @Override
+    public List<QuestDto> getUserQuestsById(Long id) {
+        userRepository.findById(id).orElseThrow(() -> new CrudException("User with " +
+                "this id doesn't exist"));
+
+        return questRepository.getByUserId(id).stream().map(quest -> QuestDto.builder()
+                .questId(quest.getQuestId())
+                .badgesReward(quest.getBadgesReward())
+                .tokensReward(quest.getTokensReward())
+                .description(quest.getDescription())
+                .ownerUserId(quest.getUser().getId())
+                .build()).collect(Collectors.toList());
     }
 }

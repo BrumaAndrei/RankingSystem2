@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/userTriesQuest")
+@CrossOrigin
 public class UserTriesQuestController {
    private final UserTriesQuestService userTriesQuestService;
 

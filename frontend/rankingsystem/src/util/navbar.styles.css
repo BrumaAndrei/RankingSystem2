@@ -1,0 +1,68 @@
+.main-navbar-div {
+    min-width: 100%;
+    position: sticky;
+    background-color:aqua;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+nav.nav-menu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    min-height: 50px;
+    background: var(--white);
+}
+
+nav.nav-menu h3 {
+    white-space: nowrap;
+    color: var(--accent-blue);
+    flex: 1 1 auto;
+    letter-spacing: 1.5px;
+    font-size: x-large;
+}
+
+
+.menu {
+    display: flex;
+    flex: 0 1 auto;
+    color: var(--accent-blue);
+    transition: all .2s ease;
+}
+
+.menu a:hover {
+    color: var(--accent-blue);
+}
+
+.navbar-logo {
+    width: 6em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.navbar-user-info {
+    padding-right: 1em;
+}
+
+.no-decoration {
+    text-decoration: none;
+    color: white;
+}
+
+.no-decoration:not(:hover) {
+    opacity: 1;
+}
+
+.navbar-favs-button {
+    white-space: nowrap;
+    text-transform: none;
+    font-size: large;
+    margin: 0.5rem;
+    font-size: 1em;
+    border-radius: 25px;
+    min-width: fit-content;
+    max-height: 45px;
+    font-weight: normal;
+}

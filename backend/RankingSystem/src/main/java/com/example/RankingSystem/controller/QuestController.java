@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/quest")
+@CrossOrigin
 public class QuestController {
    private final QuestService questService;
 
@@ -36,6 +37,11 @@ public class QuestController {
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id){
         questService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUserQuestsById(@PathVariable(value = "userId") Long id){
+        return ResponseEntity.ok(questService.getUserQuestsById(id));
     }
 
 }

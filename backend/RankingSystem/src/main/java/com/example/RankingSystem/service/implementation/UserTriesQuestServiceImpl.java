@@ -1,5 +1,6 @@
 package com.example.RankingSystem.service.implementation;
 
+import com.example.RankingSystem.dto.EnrichedQuestDto;
 import com.example.RankingSystem.dto.QuestDto;
 import com.example.RankingSystem.dto.UserTriesQuestDto;
 import com.example.RankingSystem.entity.UserTriesQuest;
@@ -64,16 +65,17 @@ public class UserTriesQuestServiceImpl implements UserTriesQuestService {
     }
 
     @Override
-    public List<QuestDto> getAllQuestsStarted(Long userId) {
+    public List<EnrichedQuestDto> getAllQuestsStarted(Long userId) {
         var user = userRepository.findById(userId).orElseThrow(() -> new CrudException("User with " +
                 "this id doesn't exist"));
         List<UserTriesQuest> userTriesQuests = userTriesQuestRepository.findByUserId(userId);
-        return userTriesQuests.stream().map(utq -> QuestDto.builder()
+        return userTriesQuests.stream().map(utq -> EnrichedQuestDto.builder()
                 .questId(utq.getId().getQuestId())
                 .ownerUserId(utq.getQuest().getUser().getId())
                 .description(utq.getQuest().getDescription())
                 .tokensReward(utq.getQuest().getTokensReward())
                 .badgesReward(utq.getQuest().getBadgesReward())
+                .completed(utq.getCompleted())
                 .build()).collect(Collectors.toList());
     }
 }
