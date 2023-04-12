@@ -8,7 +8,10 @@ import com.example.RankingSystem.repository.UserRepository;
 import com.example.RankingSystem.service.interfaces.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -75,5 +78,44 @@ public class UserServiceImpl implements UserService {
                         ).build()
                 )
                 .toList();
+    }
+
+    @Override
+    public List<UserDto> getRanking(String criteria) {
+        var users = userRepository.findAll();
+
+        if(criteria.equals("badge"))
+        {
+            users.sort(Comparator.comparingInt(User::getBadges).reversed());
+        }
+        else{
+            users.sort(Comparator.comparingInt(User::getTokens).reversed());
+        }
+        return users.stream().map(user -> UserDto.builder()
+                .id(user.getId())
+                .age(user.getAge())
+                .badges(user.getBadges())
+                .tokens(user.getTokens())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .password(user.getPassword())
+                .username(user.getUsername())
+                .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDto getById(Long id) {
+        var user = userRepository.findById(id).orElseThrow(() -> new CrudException("User with the provided" +
+                "id doesn't exist"));
+        return UserDto.builder()
+                .id(user.getId())
+                .age(user.getAge())
+                .badges(user.getBadges())
+                .tokens(user.getTokens())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .password(user.getPassword())
+                .username(user.getUsername())
+                .build();
     }
 }

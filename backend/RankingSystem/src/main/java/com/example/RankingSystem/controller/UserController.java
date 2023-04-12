@@ -20,6 +20,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getAll());
     }
 
+    @GetMapping("/ranking/{criteria}")
+    public ResponseEntity<?> getRanking(@PathVariable String criteria)
+    {
+        return ResponseEntity.ok(userService.getRanking(criteria));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody UserDto dto){
         userService.add(dto);
@@ -39,4 +45,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getById(@PathVariable(value = "userId") Long id){
+        return ResponseEntity.ok(userService.getById(id));
+    }
 }

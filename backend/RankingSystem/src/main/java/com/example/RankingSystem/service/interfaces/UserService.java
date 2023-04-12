@@ -10,4 +10,8 @@ public interface UserService {
     void update(Long id, UserDto user);
     void delete(Long id);
     List<UserDto> getAll();
+
+    List<UserDto> getRanking(String criteria);
+
+    UserDto getById(Long id);
 }

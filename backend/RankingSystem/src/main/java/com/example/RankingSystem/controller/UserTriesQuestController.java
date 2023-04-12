@@ -1,10 +1,7 @@
 package com.example.RankingSystem.controller;
 
-import com.example.RankingSystem.dto.QuestDto;
 import com.example.RankingSystem.dto.UserTriesQuestDto;
-import com.example.RankingSystem.service.interfaces.QuestService;
 import com.example.RankingSystem.service.interfaces.UserTriesQuestService;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +28,7 @@ public class UserTriesQuestController {
 
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody UserTriesQuestDto dto){
-        userTriesQuestService.update(dto);
+        userTriesQuestService.completeQuest(dto);
         return ResponseEntity.ok().build();
     }
 
@@ -39,6 +36,16 @@ public class UserTriesQuestController {
     public ResponseEntity<?> delete(UserTriesQuestDto dto){
         userTriesQuestService.delete(dto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/available/{userId}")
+    public ResponseEntity<?> getAllAvailableQuestsForUser(@PathVariable Long userId){
+        return ResponseEntity.ok(userTriesQuestService.getAllAvailable(userId));
+    }
+
+    @GetMapping("/judge/{userId}")
+    public ResponseEntity<?> getAllUserQuestsToJudge(@PathVariable Long userId){
+        return ResponseEntity.ok(userTriesQuestService.getAlluserQuestsToJudge(userId));
     }
 
 }

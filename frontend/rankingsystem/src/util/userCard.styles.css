@@ -1,0 +1,20 @@
+.quest-card {
+    width: 200px;
+    height: 200px;
+    background-color: #20042E;
+    color: #FFFFFF;
+    border-radius: 30px;
+    margin: 20px;
+    text-align: center;
+}
+
+.quest-card-selected {
+    width: 200px;
+    height: 200px;
+    background-color: #6f0ea3;
+    color: #FFFFFF;
+    border-radius: 30px;
+    margin: 20px;
+    text-align: center;
+}
+
